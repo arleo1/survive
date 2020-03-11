@@ -1,0 +1,120 @@
+import time
+import random
+
+scenario = ['jungle', 'desert', 'mountains']
+
+j_monster = ['tiger', 'python', 'gorilla']
+d_monster = ['coyote', 'bob cat', 'vulture']
+m_monster = ['bear', 'wolf', 'cougar']
+
+canteen = 100
+j_thirst = 30
+d_thirst = 50
+m_thirst = 80
+
+pack = ['knife', 'lighter', 'canteen', 'pair of pants']
+
+def opening (s):
+    if s == 'jungle':
+        print("You open your eyes, and a tropical jungle appears around you.")
+        print("You can't see anything through the thick cluster of trees, vines, and leaves.")
+        print("The air is hot and humid. You're drenched in sweat and your throat feels as rough as sandpaper.")
+        print("You don't remember how you got here, but you know you need to find water. And fast.")
+        print("You notice a ratty canvas backpack sitting next to you.")
+    if s == 'desert':
+        print("You're standing in a desert. An endless sea of sand surrounds you in all directions.")
+        print("The sun beats down on you and you wipe the sweat from your brow.")
+        print("To say it's hot is a bit of an understatement.")
+        print("You look around for shade, but all you can see is sand.")
+        print("You notice a small grey pelican case next to you.")
+    if s == 'mountains':
+        print('The tall peaks of a great number of snow-capped mountains stretch before you.')
+        print("You shiver as the chilly air hits your bare arms and you wish you had a jacket.")
+        print("You have a feeling that safety lies on the other side of the rocky mountain range.")
+        print("Next to you is a well-used suitcase.\n")
+
+name = input("Enter your name: ")
+print("Hi " + name + ". Welcome to your scenario. We hope you survive...\n")
+time.sleep(2)
+s = random.choice(scenario)
+opening(s)
+
+open = input("Open the bag? 1 for yes, 2 for no: \n")
+while open != "1" and open != "2":
+    open = input("Not correct. Press 1 or 2: ")
+
+if open =="2":
+    print("Better not touch the bag. It's not ours, anyway.")
+
+elif open == "1":
+    print("You open the canvas backpack. Inside you find:")
+    print("1 knife, 1 lighter, 1 canteen, 1 pair of pants.")
+    print("Well...")
+    print("I suppose it's better than nothing.")
+    print("What item do you want to examine?")
+    e = input("1 for knife, 2 for lighter, 3 for canteen, 4 for pants, 5 to close the bag: \n")
+    while e =="1" or e == "2" or e =="3" or e =="4" or e == "5":
+                if e == "1":
+                    print("You carefully touch the knife blade. Ouch. Yep, it's sharp.")
+                    print("Check another item?: ")
+                    e = int(input("1 for knife, 2 for lighter, 3 for canteen, 4 for pants, 5 to close the bag: \n"))
+                elif e == "2":
+                    print("You try the lighter. It works.")
+                    print("Check another item?: ")
+                    e = int(input("1 for knife, 2 for lighter, 3 for canteen, 4 for pants, 5 to close the bag: \n"))
+                elif e == "3":
+                    print("You open the canteen. It's full of water!")
+
+                    if scenario == 'jungle':
+                        print("You're thirsty. Thirst at " + j_thirst + " out of 100. Better not let it drop to 0...")
+                        dri = int(input("Take a drink? 1 for yes, 2 for no: "))
+                        while dri != 1 and dri != 2:
+                            dri = int(input("Incorrect input. Take a drink? 1 for yes, 2 for no: "))
+                        if dri == 2:
+                            print("You leave the canteen alone.")
+
+                        elif dri == 1:
+                            canteen -= 20
+                            j_thirst += 20
+                            print("You drink from the canteen. Thirst now at " + j_thirst)
+
+                    elif scenario == 'desert':
+                        print("You're a bit thirsty. Thirst at " + d_thirst + " out of 100. Don't let it drop to 0...")
+                        dri = int(input("Take a drink? 1 for yes, 2 for no: "))
+                        while dri != 1 and dri != 2:
+                            dri = int(input("Incorrect input. Take a drink? 1 for yes, 2 for no: "))
+                        if dri == 2:
+                            print("You leave the canteen alone.")
+                        elif dri == 1:
+                            canteen -= 20
+                            d_thirst += 20
+                            print("You drink from the canteen. Thirst now at " + d_thirst)
+
+                    elif scenario == 'mountains':
+                        print("You're not thirsty. Thirst at " + m_thirst + " out of 100. Don't let it drop to 0...")
+                        dri = int(input("Take a drink? 1 for yes, 2 for no: "))
+                        while dri != 1 and dri != 2:
+                            dri = int(input("Incorrect input. Take a drink? 1 for yes, 2 for no: "))
+                            if dri == 2:
+                                print("You leave the canteen alone.")
+                            elif dri == 1:
+                                canteen -= 20
+                                m_thirst += 20
+                                print("You drink from the canteen. Thirst now at " + m_thirst)
+
+                    print("Check another item?: ")
+                    e = int(input("1 for knife, 2 for lighter, 3 for canteen, 4 for pants, 5 to close the bag."))
+                elif e == "4":
+                    print("You take out the pants. They're men's dress pants, size 34.")
+                    print("There's something in the pockets...")
+                    print("You found a key! No idea to what, though....")
+                    pack.append('key')
+                    print(pack)
+                    print("Check another item?: ")
+                    e = int(input("1 for knife, 2 for lighter, 3 for canteen, 4 for pants, 5 to close the bag."))
+
+                elif e == "5":
+                    print("You close the bag.")
+                    break
+                else:
+                    e = int(input("Not a correct input. Try again: "))
